@@ -1,11 +1,15 @@
-<?php 	include "partial/header.php";	?>
+<?php 	
+  include "partial/header.php"; 
+  require_once 'partial/connect.php';	
+  require_once 'processor/pro_auth.php';
+?>
 <title>Contact Dir, add new relation</title>
 
 	<!-- body content -->
     <div class="container-fluid cnt">
         <div class="col-md-6 left-sidebar">
            <div>
-               <form class="form-horizontal">
+               <form class="form-horizontal" method="post">
                   <h2 class="ttle">Sign In</h2>
                   <div class="form-group">
                       <label for="email" class="col-sm-3 control-label">Email</label>
@@ -21,16 +25,16 @@
                   </div>
                   <div class="form-group">
                       <div class="col-sm-offset-3 col-sm-9">
-                          <div class="checkbox">
+                        <div class="checkbox">
                               <label>
-                        <input type="checkbox"> Remember me
+                        <input type="checkbox" name="remember_me" id="remember_me" > Remember me
                       </label>
-                          </div>
+                        </div>
                       </div>
                   </div>
                   <div class="form-group" style="text-align: right;">
                       <div class="col-sm-offset-3 col-sm-8">
-                          <button type="submit" class="btn btn-primary">Sign in</button>
+                          <button type="submit" name="signin" class="btn btn-primary">Sign in</button>
                       </div>
                   </div>
               </form>
@@ -40,7 +44,7 @@
         <div class="col-md-6 right-sidebar">
             
            <div>
-               <form class="form-horizontal">
+               <form class="form-horizontal" method="post">
                   <h2 class="ttle">Sign Up</h2>
       				    <div class="form-group">
       				        <label for="first_name" class="col-sm-3 control-label">First Name </label>
@@ -58,35 +62,35 @@
                   <div class="form-group">
                       <label for="email" class="col-sm-3 control-label">Email </label>
                       <div class="col-sm-8">
-                          <input type="text" class="form-control" id="email" placeholder="">
+                          <input type="text" class="form-control" name="email" id="email" placeholder="">
                       </div>
                   </div>
                   <div class="form-group">
-                      <label for="skype_id" class="col-sm-3 control-label">Skype Id</label>
+                      <label for="password" class="col-sm-3 control-label">Password </label>
                       <div class="col-sm-8">
-                          <input type="text" class="form-control" id="skype_id" name="skype_id" placeholder="">
+                          <input type="password" class="form-control" name="password" id="password" placeholder="">
                       </div>
                   </div>
                   <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-10">
                       <div class="checkbox">
                         <label>
-                          <input type="checkbox"> Others can see my profile
+                          <input type="checkbox" name="visible"> Others can see my profile
                         </label>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                       <div class="col-md-9 col-md-offset-3">
-                        <input type="checkbox" class=""> I accept
+                        <input type="checkbox" class="" name="liscence"> I accept
                       </div>
                       <div class="col-sm-8 col-md-offset-3">
-                          <textarea disabled="disabled" class="form-control" id="skype_id" name="skype_id" placeholder=""> Privacy policy agreement here </textarea>
+                          <textarea disabled="disabled" class="form-control" id="skype_id" name="privacy_policy" placeholder=""> Privacy policy agreement here </textarea>
                       </div>
                   </div>
       				    <div class="form-group" style="text-align: right;">
       				        <div class="col-sm-offset-2 col-sm-8">
-      				            <button type="submit" class="btn btn-primary">Create / Update</button>
+      				            <button type="submit" name="signup" class="btn btn-primary">Create / Update</button>
       				        </div>
       				    </div>
       				</form>

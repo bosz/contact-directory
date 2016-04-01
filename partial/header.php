@@ -1,3 +1,4 @@
+<?php require_once 'partial/connect.php'; ?>
 <!DOCTYPE html>
 <html>
 
