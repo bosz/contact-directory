@@ -1,4 +1,4 @@
-<?php require_once 'partial/connect.php'; ?>
+<?php ?>
 <!DOCTYPE html>
 <html>
 

@@ -1,6 +1,5 @@
 <?php 	
   include "partial/header.php"; 
-  require_once 'partial/connect.php';	
   require_once 'processor/pro_auth.php';
 ?>
 <title>Contact Dir, add new relation</title>

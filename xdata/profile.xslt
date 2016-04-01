@@ -7,9 +7,9 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:for-each select="user">
     <div>
       <div class="img-thumbnail">
-        <img src="" />
+        <img src="img/default_user.png" />
       </div>
-      <h4><xsl:value-of select="email" /><small></small> ) </h4>
+      <h4><xsl:value-of select="email" /><small></small></h4>
     </div>
     </xsl:for-each>
 </xsl:template>
