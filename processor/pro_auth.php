@@ -1,6 +1,7 @@
 <?php
 /*test code to display all users in the database*/ 
 //add [@email="email@email.com"] after //user to specify what to retrieve. 
+  // sedna_execute('drop document "users"');
   if(!sedna_execute('for $user in doc("users")//user 
                    return $user')){
     sedna_load('<users></users>', 'users');
@@ -17,6 +18,7 @@
 
 if (isset($_POST['signup']) || isset($_POST['signin'])) {
 
+
   /*extract data*/
   $user_info = null;
   $email = $_POST['email'];
@@ -24,7 +26,35 @@ if (isset($_POST['signup']) || isset($_POST['signin'])) {
 
   /* ================= SIGN IN ===================*/
   if (isset($_POST['signin'])) {
-    
+    /*need to add something like this for password, curently, it does not work*/
+    /* [password="'.$password.'"] */
+    $query = 
+      'for $user in doc("users")/user[@email="'.
+      $email.'"] return $user';
+    if (!sedna_execute($query)) {
+      $status = '<div class="alert alert-danger">Error ' . 
+      sedna_error() .'getting user\'s information</div>';
+    }else {
+      $user = sedna_result_array();
+      if (sizeof($user) == 0 || sizeof($user) > 1) {
+        $status = '<div class="alert alert-warning"> Wrong username or password. Please, verify your details and try again.</div>';
+      }else {
+        /*i should not actually do this. I should try to make sure the query returns an xml data than the single string. Will checkout how to return xml record instead of record as a single string and then update this point. */
+        $user = explode("\n", $user[0]);
+        $_SESSION['id'] = md5($email);
+        $_SESSION['email'] = $email;
+        //$_SESSION['image'] = $user[7];
+        echo ' <div style="text-align: center;" class="alert alert-success"> Succesfully Logged In </div>';
+        echo "<center>You will be redirected to contacts page shortly. If nothing happends, please <a href='contacts.php'> click here. </a>  </center>";
+        ?>
+        <script type="text/javascript">
+          window.setTimeout(function() {
+            location.href = "contacts.php";
+            }, 4000);
+        </script>
+        <?php
+      }
+    }
   }else 
 
   /*  ================= SIGN UP =================*/
