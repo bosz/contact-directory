@@ -6,6 +6,7 @@
 
 	<!-- body content -->
     <div class="container-fluid cnt">
+        <div class="col-md-12" style="text-align: center;"><?php echo $status; ?></div>
         <div class="col-md-6 left-sidebar">
            <div>
                <form class="form-horizontal" method="post">

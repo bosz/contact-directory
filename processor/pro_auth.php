@@ -1,9 +1,8 @@
 <?php
-  
 if (isset($_POST['signup']) || isset($_POST['signin'])) {
 
   /*extract data*/
-  $file_name = "data/" . md5(time('y:m:d h:i:s:u')) . ".xml" ;
+  $user_info = null;
   $email = $_POST['email'];
   $password = $_POST['password'];
 
@@ -37,19 +36,24 @@ if (isset($_POST['signup']) || isset($_POST['signin'])) {
     $xml_password = $user->appendChild($xml_lastname);
     $xml_password = $user->appendChild($xml_visible);
 
-
     $xml->formatOutput = true;
-    $xml->saveXML();
-    $xml->save($file_name) or die('Error working with xml');
 
-    $user_info = file_get_contents($file_name);
-    
+    /*remove the <?xml version="1.0"?> from the xml generated document*/
+    foreach ($xml->childNodes as $node) {
+       $user_info = $user_info . $xml->saveXML($node);
+    }
 
+    /*adding user into users document. look at the sql*/
+    $query = 'UPDATE insert ' . $user_info . ' into doc("users")';
 
-    unlink($file_name);
-    if(!sedna_load($user_info, 'user'))
+    /*execute the sql stateuemt to add the user into users*/
+    if (!sedna_execute($query)) {
       die('Could not load the document: ' . sedna_error() . "\n");
-    echo "Data loaded succesfully";
+    }
+
+    /*success message to be displayed on the page*/
+    unset($_POST);
+    $status = "<div class='alert alert-success'> $email added succesfull </div> ";
     
   }
 }

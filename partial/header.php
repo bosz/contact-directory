@@ -1,4 +1,7 @@
-<?php require_once "connect.php"; ?>
+<?php 
+    require_once "connect.php"; 
+    $status = 0; //status to hold information gotten from requests (suceess, failure, warin g, errors, etc. )
+?>
 <!DOCTYPE html>
 <html>
 

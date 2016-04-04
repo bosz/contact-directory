@@ -1,5 +1,0 @@
-<!-- path for users -->
-/users/user[id={user_id}]
-
-<!-- path for contacts that are owned by user with user_id -->
-/contacts/contact[user_id=user_id]
