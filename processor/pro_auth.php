@@ -20,7 +20,7 @@ if (isset($_POST['signup']) || isset($_POST['signin'])) {
   /*extract data*/
   $user_info = null;
   $email = $_POST['email'];
-  $password = $_POST['password'];
+  $password = md5($_POST['password']);
 
   /* ================= SIGN IN ===================*/
   if (isset($_POST['signin'])) {
