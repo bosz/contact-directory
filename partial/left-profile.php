@@ -12,7 +12,8 @@
     	die('Could not execute query: <br /> ' . sedna_error() . "\n");*/
 
 	$xml = new DOMDocument;
-	$xml->load('data/user.xml');
+	$data = "<user><email>".$_SESSION['email'] ."</email></user>";
+	$xml->loadXML($data);
 
 	// Load XSL file
 	$xsl = new DOMDocument;
