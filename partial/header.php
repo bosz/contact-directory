@@ -1,6 +1,7 @@
 <?php 
+    session_start();
     require_once "connect.php"; 
-    $status = 0; //status to hold information gotten from requests (suceess, failure, warin g, errors, etc. )
+    $status = null; //status to hold information gotten from requests (suceess, failure, warin g, errors, etc. )
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,12 +41,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Ultimate Contact Directory</a>
+                <a class="navbar-brand" href="index.php">Ultimate Contact Directory</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <?php  if(isset($_SESSION['id'])){ ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-alert"></span></a>
                         <ul class="dropdown-menu">
@@ -61,6 +63,10 @@
                     <li><a href="contacts.php">Contacts</a></li>
                     <li><a href="newRelation.php">Relations</a></li>
                     <li><a href="newRelation.php">Requests</a></li>
+                    <?php } else { ?>
+                    <li><a href="auth.php">Sign In</a></li>
+                    <li><a href="auth.php">Sign Up</a></li>
+                    <?php } ?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <form class="navbar-form navbar-left" method="get" action="index.php" role="search">
@@ -71,7 +77,7 @@
                             </span>
                         </div>
                     </form>
-
+                    <?php  if(isset($_SESSION['id'])){ ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -82,6 +88,7 @@
                             <li><a href="#">Separated link</a></li>
                         </ul>
                     </li>
+                    <?php } ?>
                 </ul>
             </div>
         </div>
