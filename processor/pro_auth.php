@@ -2,8 +2,7 @@
 /*test code to display all users in the database*/ 
 //add [@email="email@email.com"] after //user to specify what to retrieve. 
   // sedna_execute('drop document "users"');
-  if(!sedna_execute('for $user in doc("users")//user 
-                   return $user')){
+  if(!sedna_execute('doc("users")//user')){
     sedna_load('<users></users>', 'users');
     echo ('<div class="alert alert-warning">Could not execute query: ' . sedna_error() . "</div>");
   }else{
@@ -26,10 +25,11 @@ if (isset($_POST['signup']) || isset($_POST['signin'])) {
 
   /* ================= SIGN IN ===================*/
   if (isset($_POST['signin'])) {
-    /*need to add something like this for password, curently, it does not work*/
-    /* and password="'.$password.'"*/
-    echo $query = 
-      'for $user in doc("users")//user[@email="'.$email.'"] return $user';
+    $query = 'for $user in doc("users")//user 
+      where 
+        $user/password = "'.$password.'" and 
+        $user[@email="'.$email.'"] 
+      return $user ';
     if (!sedna_execute($query)) {
       $status = '<div class="alert alert-danger">Error ' . 
       sedna_error() .'getting user\'s information</div>';
@@ -40,10 +40,8 @@ if (isset($_POST['signup']) || isset($_POST['signin'])) {
         $status = '<div class="alert alert-warning"> Wrong username or password. Please, verify your details and try again.</div>';
       }else {
         /*i should not actually do this. I should try to make sure the query returns an xml data than the single string. Will checkout how to return xml record instead of record as a single string and then update this point. */
-        $user = explode("\n", $user[0]);
         $_SESSION['id'] = md5($email);
         $_SESSION['email'] = $email;
-        $_SESSION['image'] = $user[6];
         echo ' <div style="text-align: center;" class="alert alert-success"> Succesfully Logged In </div>';
         echo "<center>You will be redirected to contacts page shortly. If nothing happends, please <a href='contacts.php'> click here. </a>  </center>";
         ?>
@@ -79,7 +77,7 @@ if (isset($_POST['signup']) || isset($_POST['signin'])) {
     $user = $xml->appendChild($user);
 
     $xml_email = $xml->createElement('email', $email);
-    $xml_password = $xml->createElement('email', $password);
+    $xml_password = $xml->createElement('password', $password);
     $xml_firstname = $xml->createElement('first_name', $first_name);
     $xml_lastname = $xml->createElement('last_name', $last_name);
     $xml_visible = $xml->createElement('visible', $visible);
@@ -87,9 +85,9 @@ if (isset($_POST['signup']) || isset($_POST['signin'])) {
 
     $xml_email = $user->appendChild($xml_email);
     $xml_password = $user->appendChild($xml_password);
-    $xml_password = $user->appendChild($xml_firstname);
-    $xml_password = $user->appendChild($xml_lastname);
-    $xml_password = $user->appendChild($xml_visible);
+    $xml_firstname = $user->appendChild($xml_firstname);
+    $xml_lastname = $user->appendChild($xml_lastname);
+    $xml_visible = $user->appendChild($xml_visible);
     $xml_image = $user->appendChild($xml_image);
 
     $xml->formatOutput = true;
