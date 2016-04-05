@@ -3,7 +3,7 @@
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:template match="/">
   <xsl:for-each select="Relations/relation">
-	<li><a href="?relation={.}"><xsl:value-of select='.'/></a></li>
+	<a href="?relation={.}"><li><xsl:value-of select='.'/></li></a>
   </xsl:for-each>
 </xsl:template>
 </xsl:stylesheet> 

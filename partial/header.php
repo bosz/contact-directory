@@ -64,7 +64,7 @@
                     <li><a href="newRelation.php">Relations</a></li>
                     <!-- <li><a href="newRelation.php">Requests</a></li> -->
                     <?php } else { ?>
-                    <li><a href="auth.php">Sign In</a></li>
+                    <li><a href="index.php">Sign In</a></li>
                     <li><a href="auth.php">Sign Up</a></li>
                     <?php } ?>
                 </ul>
