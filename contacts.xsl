@@ -4,7 +4,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template match="/">
 
-          <xsl:for-each select="ContactDir/contacts/contact">
+          <xsl:for-each select="ContactDir/contacts[@id='kl@gmail.com']/contact">
                <div class="contact-in-contacts col-md-12">
                  <img src="img/default_user.png" class="img-circle col-md-3" />
                  <div class="col-md-9">
