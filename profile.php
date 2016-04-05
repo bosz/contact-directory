@@ -1,4 +1,7 @@
-<?php 	include "partial/header.php";	?>
+<?php 	
+  include "partial/header.php";	
+  require_once "processor/pro_profile.php"; 
+?>
 <title>Profile Details, Contact dir</title>
 
 	<!-- body content -->
@@ -29,7 +32,7 @@
                   <div class="form-group">
                       <label for="email" class="col-sm-3 control-label">Email </label>
                       <div class="col-sm-8">
-                          <input type="text" class="form-control" name="email" id="email" placeholder="">
+                          <input readonly="readonly" value="fongohmartin@gmail.com" type="text" class="form-control" name="email" id="email" placeholder="">
                       </div>
                   </div>
                   <div class="form-group">
@@ -55,7 +58,7 @@
                   </div>
                   <div class="form-group">
                       <div class="col-md-9 col-md-offset-3">
-                        <input type="checkbox" class="" name="liscence"> I accept
+                        <input required="required" type="checkbox" class="" name="liscence"> I accept
                       </div>
                       <div class="col-sm-8 col-md-offset-3">
                           <textarea disabled="disabled" class="form-control" id="skype_id" name="privacy_policy" placeholder=""> Privacy policy agreement here </textarea>
@@ -63,7 +66,7 @@
                   </div>
                   <div class="form-group" style="text-align: right;">
                       <div class="col-sm-offset-2 col-sm-8">
-                          <button type="submit" name="signup" class="btn btn-primary">Create / Update</button>
+                          <button type="submit" name="update_profile" class="btn btn-primary">Update</button>
                       </div>
                   </div>
               </form>    

@@ -88,7 +88,7 @@
                   </div>
                   <div class="form-group">
                       <div class="col-md-9 col-md-offset-3">
-                        <input type="checkbox" class="" name="liscence"> I accept
+                        <input required="required" type="checkbox" class="" name="liscence"> I accept
                       </div>
                       <div class="col-sm-8 col-md-offset-3">
                           <textarea disabled="disabled" class="form-control" id="skype_id" name="privacy_policy" placeholder=""> Privacy policy agreement here </textarea>
