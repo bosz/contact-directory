@@ -1,4 +1,5 @@
 <?php 	include "partial/header.php";	?>
+<?php   require_once 'processor/pro_relation.php'; ?>
 <title>Contact Dir, add new relation</title>
 
 	<!-- body content -->
@@ -12,7 +13,8 @@
         <div class="col-md-6 middle-content">
             
            <div>
-               <form class="form-horizontal" method="Post" action="processor/pro_relation.php">
+            <?php echo $status; ?>
+               <form class="form-horizontal" method="Post" action="newRelation.php">
                		<h2 class="ttle">Add Relation</h2>
 				    <div class="form-group">
 				        <label for="relName" class="col-sm-2 control-label">Relation</label>
