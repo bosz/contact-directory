@@ -27,16 +27,16 @@ if (isset($_POST['signup']) || isset($_POST['signin'])) {
   /* ================= SIGN IN ===================*/
   if (isset($_POST['signin'])) {
     /*need to add something like this for password, curently, it does not work*/
-    /* [password="'.$password.'"] */
-    $query = 
-      'for $user in doc("users")/user[@email="'.
-      $email.'"] return $user';
+    /* and password="'.$password.'"*/
+    echo $query = 
+      'for $user in doc("users")//user[@email="'.$email.'"] return $user';
     if (!sedna_execute($query)) {
       $status = '<div class="alert alert-danger">Error ' . 
       sedna_error() .'getting user\'s information</div>';
     }else {
       $user = sedna_result_array();
       if (sizeof($user) == 0 || sizeof($user) > 1) {
+        var_dump($user);
         $status = '<div class="alert alert-warning"> Wrong username or password. Please, verify your details and try again.</div>';
       }else {
         /*i should not actually do this. I should try to make sure the query returns an xml data than the single string. Will checkout how to return xml record instead of record as a single string and then update this point. */

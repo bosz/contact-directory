@@ -9,9 +9,10 @@ if(isset($_POST['new'])){
 	$skype = $_POST['skype_id'];
 	$relation = $_POST['relation'];
 	$note = $_POST['note'];
+	$phone = $_POST['phone'];
 
 
-	$filename = '/var/www/html/contact-directory/contacts.xml';
+	$filename = 'contacts.xml';
   	$filename = realpath($filename);
 
 
@@ -23,7 +24,7 @@ if(isset($_POST['new'])){
 	//adding new record
 
 	$i = 0;
-	$user_id = 'edela';
+	$user_id = $_SESSION['email'];
 
 
 	if($xml->children())
