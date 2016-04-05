@@ -7,41 +7,7 @@
 	<!-- body content -->
     <div class="container-fluid cnt">
         <div class="col-md-12" style="text-align: center;"><?php echo $status; ?></div>
-        <div class="col-md-6 left-sidebar">
-           <div>
-               <form class="form-horizontal" method="post">
-                  <h2 class="ttle">Sign In</h2>
-                  <div class="form-group">
-                      <label for="email" class="col-sm-3 control-label">Email</label>
-                      <div class="col-sm-8">
-                          <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label for="password" class="col-sm-3 control-label">Password</label>
-                      <div class="col-sm-8">
-                          <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <div class="col-sm-offset-3 col-sm-9">
-                        <div class="checkbox">
-                              <label>
-                        <input type="checkbox" name="remember_me" id="remember_me" > Remember me
-                      </label>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="form-group" style="text-align: right;">
-                      <div class="col-sm-offset-3 col-sm-8">
-                          <button type="submit" name="signin" class="btn btn-primary">Sign in</button>
-                      </div>
-                  </div>
-              </form>
-           </div>
-        </div>
-
-        <div class="col-md-6 right-sidebar">
+        <div class="col-md-6 col-md-offset-3 right-sidebar">
             
            <div>
                <form class="form-horizontal" method="post" enctype="multipart/form-data">
