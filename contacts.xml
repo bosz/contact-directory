@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContactDir>
 
-<contacts id="wilsontuma@gmail.com"><contact><name>djff kevin</name><phone>2992992</phone><alias>larry</alias><email>kebvin@mfgmakdk.smdm</email><skype>larry22</skype><relation>Co-worker</relation><note> testing</note></contact></contacts></ContactDir>
+    <contacts id="wilsontuma@gmail.com">
+        <contact>
+            <name>djff kevin</name>
+            <phone>2992992</phone>
+            <alias>larry</alias>
+            <email>kebvin@mfgmakdk.smdm</email>
+            <skype>larry22</skype>
+            <relation>Co-worker</relation>
+            <note> testing</note>
+        </contact>
+    </contacts>
+</ContactDir>
