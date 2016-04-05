@@ -12,11 +12,10 @@
     	die('Could not execute query: <br /> ' . sedna_error() . "\n");*/
 
 	$xml = new DOMDocument;
-	$data = 
-	"<user>
-		<email>".$_SESSION['email'] ."</email>
-		<image>".$_SESSION['image'] ."</image>
-	</user>";
+	 $query = 'doc("users")//user[@email="'.$_SESSION['email'].'"]';
+    sedna_execute($query);
+    $data = sedna_result_array();
+    $data = $data[0];
 	$xml->loadXML($data);
 
 	// Load XSL file

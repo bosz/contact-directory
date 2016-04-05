@@ -60,12 +60,18 @@
                       <label for="relation" name="relation" class="col-sm-3 control-label">Related </label>
                       <div class="col-sm-8">
                           <select class="form-control" id='relation' name='relation'>
-                            <option>Mother</option>
-                            <option>Father</option>
-                            <option>Spouse</option>
-                            <option>Co-worker</option>
-                            <option>Sibling</option>
-                            <option>Other</option>
+                            <?php 
+                            
+                            $xml = new DOMDocument;
+                            $xml->load('xdata/relation.xml');
+
+                            $xsl = new DOMDocument;
+                            $xsl->load('xdata/relationInContacts.xsl');
+
+                            $proc = new XSLTProcessor;
+                            $proc->importStyleSheet($xsl);
+                            echo $proc->transformToXML($xml);
+                            ?>
                           </select>
                           <span class="pull-right">Relation not found, <a href="newRelation.php">create a relation</a></span>
                       </div>
