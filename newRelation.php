@@ -12,17 +12,17 @@
         <div class="col-md-6 middle-content">
             
            <div>
-               <form class="form-horizontal">
+               <form class="form-horizontal" method="Post" action="processor/pro_relation.php">
                		<h2 class="ttle">Add Relation</h2>
 				    <div class="form-group">
 				        <label for="relName" class="col-sm-2 control-label">Relation</label>
 				        <div class="col-sm-10">
-				            <input type="text" class="form-control" id="relName" placeholder="Relation. eg Father, Mother, Co-worker, spouse">
+				            <input type="text" class="form-control" id="relName" name="relName" placeholder="Relation. eg Father, Mother, Co-worker, spouse">
 				        </div>
 				    </div>
 				    <div class="form-group" style="text-align: right;">
 				        <div class="col-sm-offset-2 col-sm-10">
-				            <button type="submit" class="btn btn-primary">Create / Update</button>
+				            <button type="submit" class="btn btn-primary" name='newRel' id='newRel'>Create / Update</button>
 				        </div>
 				    </div>
 				    <div style="text-align: right;">
