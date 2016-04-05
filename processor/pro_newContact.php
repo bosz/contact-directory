@@ -1,107 +1,116 @@
 <?php
 
-if(isset($_POST['new'])){
-
-	$fname = $_POST['first_name'];
-	$lname = $_POST['last_name'];
-	$alias = $_POST['alias'];
-	$email = $_POST['email'];
-	$skype = $_POST['skype_id'];
-	$relation = $_POST['relation'];
-	$note = $_POST['note'];
-	$phone = $_POST['phone'];
-
-
-	$filename = 'contacts.xml';
-  	$filename = realpath($filename);
-
-
-	$xml = simplexml_load_file($filename);
-	$xml = new SimpleXMLElement($xml->asXML());	
-
-	//$itemsNode = $xml;
-
-	//adding new record
-
-	$i = 0;
-	$user_id = $_SESSION['email'];
-
-
-	if($xml->children())
+	# Working with contacts in database
+	//sedna_execute("drop document 'contactDir'");
+	if(!sedna_execute('doc("contactDir")'))
 	{
-		
-		foreach ($xml->children() as $user) {
-			# code...
-			
-			//Finding the contact book for a user to add a contact using the session id
-			if($xml->contacts[$i]['id'] == $user_id)
-			{
+	    sedna_load('<contactDir></contactDir>', 'contactDir');
+	    echo ('<div class="alert alert-warning">Could not create contact document: ' . sedna_error() . "</div>");
+  	}
+  	else
+  	{
+	    // echo "<pre>";
+	    // var_dump(sedna_result_array());
+	    // echo "</pre>";
+  	}
 
-				$contacts = $xml->contacts[$i];
+  	if(isset($_POST['new']))
+  	{
+  		$user_info = null;
+  		$fname = $_POST['first_name'];
+		$lname = $_POST['last_name'];
+		$alias = $_POST['alias'];
+		$email = $_POST['email'];
+		$skype = $_POST['skype_id'];
+		$relation = $_POST['relation'];
+		$note = $_POST['note'];
+		$phone = $_POST['phone'];
 
-				$contact = $contacts->addChild('contact');
-				
+		$user_id = $_SESSION['email'];
 
-				$contact->addChild('name', $fname.' '.$lname);
-				$contact->addChild('phone', $phone);
-				$contact->addChild('alias', $alias);
-				$contact->addChild('email', $email);
-				$contact->addChild('skype', $skype);
-				$contact->addChild('relation', $relation);
-				$contact->addChild('note', $note);
-				$found = True;
-				break;
-			}
-			$i = $i + 1;
+		/*compose query data. Needs to be changed with php's dom parser*/
+	    $xml = new DOMDocument("1.0");
 
-		}
+	    $query = "doc('contactDir')//contacts[@id='".$user_id."']";
 
-		//create a new contact book for user if contact book not found
-		if(!$found){
-			$contacts = $xml;
-			$contacts = $contacts->addChild('contacts');
-			$contacts->addAttribute('id', $user_id);
-			$contact = $contacts->addChild('contact');
+	    if(sedna_execute($query) && sizeof(sedna_result_array())>0)
+	    {
 
-			//adding contact elements
-			$contact->addChild('name', $fname.' '.$lname);
-			$contact->addChild('phone', $phone);
-			$contact->addChild('alias', $alias);
-			$contact->addChild('email', $email);
-			$contact->addChild('skype', $skype);
-			$contact->addChild('relation', $relation);
-			$contact->addChild('note', $note);
-		}
-		
-	}
+			    $user_contact = $xml->createElement('contact');
+			    $user_contact = $xml->appendChild($user_contact);
+			    $xml_name = $xml->createElement('name', $fname.' '.$lname);
+			    $xml_alias = $xml->createElement('alias', $alias);
+			    $xml_email = $xml->createElement('email', $email);
+			    $xml_skype = $xml->createElement('skype', $skype);
+			    $xml_relation = $xml->createElement('relation', $relation);
+			    $xml_note = $xml->createElement('note', $note);
+			    $xml_phone = $xml->createElement('phone', $phone);
 
-	//create new contact book in file
-	else
-	{
-		
-		$contacts = $xml;
-		$contacts = $contacts->addChild('contacts');
-		$contacts->addAttribute('id', $user_id);
-		$contact = $contacts->addChild('contact');
-		$contact->addChild('name', $fname.' '.$lname);
-		$contact->addChild('phone', $phone);
-		$contact->addChild('alias', $alias);
-		$contact->addChild('email', $email);
-		$contact->addChild('skype', $skype);
-		$contact->addChild('relation', $relation);
-		$contact->addChild('note', $note);
-		//adding contact elements
-									
-	}
+			    $xml_name = $user_contact->appendChild($xml_name);
+			    $xml_alias = $user_contact->appendChild($xml_alias);
+			    $xml_email = $user_contact->appendChild($xml_email);
+			    $xml_skype = $user_contact->appendChild($xml_skype);
+			    $xml_relation = $user_contact->appendChild($xml_relation);
+			    $xml_note = $user_contact->appendChild($xml_note);
+			    $xml_phone = $user_contact->appendChild($xml_phone);
 
-	
+			    $xml->formatOutput = true;
 
-	
-	$xml->asXML($filename);
+			    /*remove the <?xml version="1.0"?> from the xml generated document*/
+			    foreach ($xml->childNodes as $node) {
+			       $user_info = $user_info . $xml->saveXML($node);
+			      
+			   }
 
-	unset($_POST['new']);
-	$status = "<div class='alert alert-success'> Contact Successfully Added </div> ";
+			   $query = 'UPDATE insert ' . $user_info . ' into doc("contactDir")//contacts[@id="'.$user_id.'"]';
+			   if (!sedna_execute($query)) {
+				      die('Could not add the user\'s contact : ' . sedna_error() . "\n");
+			   		}
 
-}
+	    }
+
+	    else
+	    {
+			    $user = $xml->createElement('contacts');
+			    $user->setAttribute("id", $user_id);
+			    $user = $xml->appendChild($user);
+
+			    $user_contact = $xml->createElement('contact');
+			    $user_contact = $user->appendChild($user_contact);
+			    $xml_name = $xml->createElement('name', $fname.' '.$lname);
+			    $xml_alias = $xml->createElement('alias', $alias);
+			    $xml_email = $xml->createElement('email', $email);
+			    $xml_skype = $xml->createElement('skype', $skype);
+			    $xml_relation = $xml->createElement('relation', $relation);
+			    $xml_note = $xml->createElement('note', $note);
+			    $xml_phone = $xml->createElement('phone', $phone);
+
+			    $xml_name = $user_contact->appendChild($xml_name);
+			    $xml_alias = $user_contact->appendChild($xml_alias);
+			    $xml_email = $user_contact->appendChild($xml_email);
+			    $xml_skype = $user_contact->appendChild($xml_skype);
+			    $xml_relation = $user_contact->appendChild($xml_relation);
+			    $xml_note = $user_contact->appendChild($xml_note);
+			    $xml_phone = $user_contact->appendChild($xml_phone);
+
+			    $xml->formatOutput = true;
+
+			    /*remove the <?xml version="1.0"?> from the xml generated document*/
+			    foreach ($xml->childNodes as $node) {
+			       $user_info = $user_info . $xml->saveXML($node);
+			      
+			   }
+			    /*adding user into users document. look at the sql*/
+		    	 $query = 'UPDATE insert ' . $user_info . ' into doc("contactDir")';
+
+		    	/*execute the sql stateuemt to add the user into users*/
+			    if (!sedna_execute($query)) {
+			      die('Could not add the user\'s contact : ' . sedna_error() . "\n");
+		   		}
+		   	}
+
+   		unset($_POST);
+    	$status = "<div class='alert alert-success'> Contact Successfully Stored in database </div> ";
+  	}
 
 ?>

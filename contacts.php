@@ -12,23 +12,41 @@
         <div class="col-md-6 middle-content">
             <div class="col-md-12"> <a href="newContact.php" class="btn btn-danger btn-md pull-right">New Contact<i class="glyphicon glyphicon-user"></i><i class="glyphicon glyphicon-plus"></i></a></div>
                 <hr /><hr />
-            <?php
-                // Load XML file
-                $xml = new DOMDocument;
-                $xml->load('contacts.xml');
+           
+          <?php
 
-                // Load XSL file
-                $xsl = new DOMDocument;
-                $xsl->load('contacts.xsl');
+            $user_id = $_SESSION['email'];
+            $query = "doc('contactDir')//contacts[@id='".$user_id."']";
 
-                // Configure the transformer
-                $proc = new XSLTProcessor;
+            if (!sedna_execute($query)) {
+              $status = '<div class="alert alert-danger">Error ' . 
+              sedna_error() .'getting user\'s information</div>';
+            }
 
-                // Attach the xsl rules
-                $proc->importStyleSheet($xsl);
+            else
+            {
+              $contacts = sedna_result_array();
+              //var_dump($contacts);
 
-                echo $proc->transformToXML($xml);
-            ?> 
+              $contacts = $contacts[0];
+                 $xml = new DOMDocument;
+                 $xml->loadXML($contacts);
+
+                 $xsl = new DOMDocument;
+                 $xsl->load('xdata/contacts.xsl');
+
+                 $proc = new XSLTProcessor;
+
+                 $proc->importStyleSheet($xsl);
+                 echo $proc->transformToXML($xml);
+
+
+
+              }
+
+          ?>
+
+
         </div>
 
         <div class="col-md-3 right-sidebar">
