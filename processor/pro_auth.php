@@ -2,13 +2,13 @@
 /*test code to display all users in the database*/ 
 //add [@email="email@email.com"] after //user to specify what to retrieve. 
   // sedna_execute('drop document "users"');
-  if(!sedna_execute('doc("users")//user')){
+  if(!sedna_execute('doc("users")')){
     sedna_load('<users></users>', 'users');
     echo ('<div class="alert alert-warning">Could not execute query: ' . sedna_error() . "</div>");
   }else{
-    // echo "<pre>";
-    // var_dump(sedna_result_array());
-    // echo "</pre>";
+    /*echo "<pre>";
+    var_dump(sedna_result_array());
+    echo "</pre>";*/
   }
 
 
@@ -38,7 +38,7 @@ if (isset($_POST['signup']) || isset($_POST['signin'])) {
         var_dump($user);
         $status = '<div class="alert alert-warning"> Wrong username or password. Please, verify your details and try again.</div>';
       }else {
-        /*i should not actually do this. I should try to make sure the query returns an xml data than the single string. Will checkout how to return xml record instead of record as a single string and then update this point. */
+        /*set session details*/
         $_SESSION['id'] = md5($email);
         $_SESSION['email'] = $email;
         $status = ' <div style="text-align: center;" class="alert alert-success"> Succesfully Logged In </div>';

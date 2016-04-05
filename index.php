@@ -57,18 +57,6 @@
                 <?php } ?>
             </div>
         </div>
-       <!--  <div class="item">
-            <img src="img/carousel3.jpg" alt="carousel image">
-            <div class="carousel-caption">
-                <h1>Easy Management</h1>
-            </div>
-        </div>
-        <div class="item">
-            <img src="img/carousel3.jpg" alt="carousel image">
-            <div class="carousel-caption">
-                <h1>Very Seccured</h1>
-            </div>
-        </div> -->
     </div>
 
     <!-- Controls -->
@@ -82,19 +70,15 @@
     </a>
 </div>
 
+<?php include "partial/footer.php"; ?>
 
-<!-- body content -->
-<div class="container-fluid cnt">
-    <div class="col-md-9 middle-content">
-       <div>
-           <?php include "partial/contacts.php"; ?>
-       </div>
-    </div>
-    <div class="col-md-3 right-sidebar">
-       <div>
-           <?php include "partial/right-relation.php"; ?>
-       </div>
-    </div>
-</div>
+<?php 
+/*query to retrieve contacts by relation*/
+/*$query = 
+   'for $contact in doc("contactDir")//contacts 
+    where 
+      $contact[@id="'.$email.'""] and 
+      $contact/contact[relation="'.$relation.'"]
+    return $contact ';*/
 
-<?php include "partial/footer.php";
+?>
