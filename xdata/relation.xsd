@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:element name="Relations" type="Relations"/>
+<xsd:complexType name="Relations">
+    <xsd:sequence>
+        <xsd:element name="relation" >
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:minLength value="3" />
+                    <xsd:maxLength value="100" />
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:element>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:schema>
