@@ -96,7 +96,7 @@
                   </div>
       				    <div class="form-group" style="text-align: right;">
       				        <div class="col-sm-offset-2 col-sm-8">
-      				            <button type="submit" name="signup" class="btn btn-primary">Create / Update</button>
+      				            <button type="submit" name="signup" class="btn btn-primary">Create</button>
       				        </div>
       				    </div>
       				</form>

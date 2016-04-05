@@ -1,15 +1,4 @@
 <?php 
-
-	/*TEST TO SEE IF IT CHANGES*/
-	/*if(!sedna_execute('for $user in doc("users")//user[@email="'.$email.'"] return $user')){
-		sedna_load('<users></users>', 'users');
-		echo ('<div class="alert alert-warning">Could not execute query: ' . sedna_error() . "</div>");
-	}else{
-		echo "<pre>";
-		var_dump(sedna_result_array());
-		echo "</pre>";
-	}*/
-
 	if (isset($_POST['update_profile'])) {
 		require_once "functions.php";
 		$email = $_POST['email'];
@@ -42,9 +31,19 @@
 	    }
 
 	    /*remove previous image and update session with new image*/
-	    //unlink($_SESSION['image']);
+	    unlink($_SESSION['image']);
 	    $_SESSION['image'] = $image;
+	    $status = ' <div class="alert alert-success"> Profile uploaded succesfully</div>';
+	    $status .= '<center>You will be redirected in 2 seconds</center>';
+	    ?>
+        <script type="text/javascript">
+          window.setTimeout(function() {
+            location.href = "contacts.php";
+            }, 2000);
+        </script>
+        <?php
 	}
+
 	/*just nornal page load so need to pull data from the database and fill the form*/
 	else{
 	}	
