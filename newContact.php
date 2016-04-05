@@ -1,4 +1,7 @@
-<?php 	include "partial/header.php";	?>
+<?php 	
+    include "partial/header.php";	
+    require_once 'processor/pro_newContact.php';
+  ?>
 <title>Contact Dir, add new relation</title>
 
 	<!-- body content -->
@@ -12,7 +15,8 @@
         <div class="col-md-6 middle-content">
             
            <div>
-               <form class="form-horizontal">
+              <?php echo $status; ?>
+               <form class="form-horizontal" method="Post" action="newContact.php">
                   <h2 class="ttle">Add Contact</h2>
       				    <div class="form-group">
       				        <label for="first_name" class="col-sm-3 control-label">First Name </label>
@@ -28,6 +32,12 @@
                   </div>
                   <hr>
                   <div class="form-group">
+                      <label for="alias" class="col-sm-3 control-label">Phone Number </label>
+                      <div class="col-sm-8">
+                          <input type="text" class="form-control" id="phone" name="phone" placeholder="">
+                      </div>
+                  </div>
+                  <div class="form-group">
                       <label for="alias" class="col-sm-3 control-label">Alias (username) </label>
                       <div class="col-sm-8">
                           <input type="text" class="form-control" id="alias" name="alias" placeholder="">
@@ -37,7 +47,7 @@
                   <div class="form-group">
                       <label for="email" class="col-sm-3 control-label">Email </label>
                       <div class="col-sm-8">
-                          <input type="text" class="form-control" id="email" placeholder="">
+                          <input type="text" class="form-control" id="email" name='email' placeholder="">
                       </div>
                   </div>
                   <div class="form-group">
@@ -49,7 +59,7 @@
                   <div class="form-group">
                       <label for="relation" name="relation" class="col-sm-3 control-label">Related </label>
                       <div class="col-sm-8">
-                          <select class="form-control">
+                          <select class="form-control" id='relation' name='relation'>
                             <option>Mother</option>
                             <option>Father</option>
                             <option>Spouse</option>
@@ -76,8 +86,8 @@
                       </div>
                   </div>
       				    <div class="form-group" style="text-align: right;">
-      				        <div class="col-sm-offset-2 col-sm-8">
-      				            <button type="submit" class="btn btn-primary">Create / Update</button>
+      				        <div class="col-sm-offset-3 col-sm-8">
+      				            <button type="submit" class="btn btn-primary" name="new" id="new" >Create</button>
       				        </div>
       				    </div>
       				</form>
