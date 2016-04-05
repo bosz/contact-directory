@@ -1,6 +1,2 @@
 .tmp-package
-doc
-easyappointments.zip
-src/config.php
-src/application/logs/*
-node_modules
+img/users/

@@ -44,7 +44,7 @@
         <div class="col-md-6 right-sidebar">
             
            <div>
-               <form class="form-horizontal" method="post">
+               <form class="form-horizontal" method="post" enctype="multipart/form-data">
                   <h2 class="ttle">Sign Up</h2>
       				    <div class="form-group">
       				        <label for="first_name" class="col-sm-3 control-label">First Name </label>
@@ -63,6 +63,12 @@
                       <label for="email" class="col-sm-3 control-label">Email </label>
                       <div class="col-sm-8">
                           <input type="text" class="form-control" name="email" id="email" placeholder="">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="photo" class="col-sm-3 control-label">Photo </label>
+                      <div class="col-sm-8">
+                          <input type="file" class="form-control" name="file" id="photo" placeholder="">
                       </div>
                   </div>
                   <div class="form-group">
