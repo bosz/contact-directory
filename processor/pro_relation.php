@@ -2,8 +2,9 @@
 
 if(isset($_POST['newRel']))
 {
+
 	$relation = $_POST['relName'];
-	$filename = '../xdata/relation.xml';
+	$filename = 'xdata/relation.xml';
   	$filename = realpath($filename);
 
 
@@ -13,5 +14,7 @@ if(isset($_POST['newRel']))
 	$relation = $relations->addChild("relation", $relation);
 
 	$xml->asXML($filename);
+	unset($_POST['newRel']);
+	$status = "<div class='alert alert-success'> Relation added succesfull </div> ";
 }
 ?>
