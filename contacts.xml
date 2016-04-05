@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContactDir>
- 	
- <contacts id="edela@admin.com"><contact><name>Edelqueen Anyam</name><phone/><alias>edela</alias><email>edel@edle.com</email><skype>edlae234</skype><relation>Co-worker</relation><note> this is an attribute test</note></contact><contact><name>Edelqueen Anyam</name><phone/><alias>edela</alias><email>edel@edle.com</email><skype>edlae234</skype><relation>Co-worker</relation><note> this is an attribute test</note></contact></contacts><contacts id="edela"><contact><name>Edelqueen Anyam</name><phone/><alias>edela</alias><email>edel@edle.com</email><skype>edlae234</skype><relation>Co-worker</relation><note> this is an attribute test</note></contact><contact><name>dfjsklf kdsjklf</name><phone/><alias>dskfdlf</alias><email>skdfjsdjfkl</email><skype>skdfljsdf</skype><relation>Co-worker</relation><note> fksdjflksjd</note></contact><contact><name>Fongoh  Tayon</name><phone/><alias>T-Boy</alias><email>fongoh@fongh.com</email><skype>fongoh45</skype><relation>Sibling</relation><note> This is a test of unset</note></contact><contact><name>Zishu Bleris</name><phone/><alias>ZZ</alias><email>zish@ble.com</email><skype>zishu34</skype><relation>Other</relation><note> this is a final test</note></contact><contact><name>Fotso  Kevin</name><phone/><alias>djff</alias><email>admin@admin.com</email><skype>kevinlarry53</skype><relation>Father</relation><note> this is anoda test</note></contact><contact><name>Fotso  Kevin</name><phone/><alias>djff</alias><email>admin@admin.com</email><skype>kevinlarry53</skype><relation>Father</relation><note> this is anoda test</note></contact><contact><name>Fotso  Kevin</name><phone/><alias>djff</alias><email>admin@admin.com</email><skype>kevinlarry53</skype><relation>Father</relation><note> this is anoda test</note></contact><contact><name>Fotso  Kevin</name><phone/><alias>djff</alias><email>admin@admin.com</email><skype>kevinlarry53</skype><relation>Father</relation><note> this is anoda test</note></contact><contact><name>Fongoh Tailor</name><phone/><alias>T_Boy</alias><email>admin@admin.com</email><skype>taying</skype><relation>Spouse</relation><note> trial note</note></contact></contacts></ContactDir>
+
+    <contacts id="wilsontuma@gmail.com">
+        <contact>
+            <name>djff kevin</name>
+            <phone>2992992</phone>
+            <alias>larry</alias>
+            <email>kebvin@mfgmakdk.smdm</email>
+            <skype>larry22</skype>
+            <relation>Co-worker</relation>
+            <note> testing</note>
+        </contact>
+    </contacts>
+</ContactDir>
