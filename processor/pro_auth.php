@@ -1,14 +1,14 @@
 <?php
 /*test code to display all users in the database*/ 
-//add [@email="email@email.com"] after //user to specify what to retrieve. 
+//add [email="email@email.com"] after //user to specify what to retrieve. 
   // sedna_execute('drop document "users"');
   if(!sedna_execute('doc("users")')){
     sedna_load('<users></users>', 'users');
     echo ('<div class="alert alert-warning">Could not execute query: ' . sedna_error() . "</div>");
   }else{
-    /*echo "<pre>";
+    echo "<pre>";
     var_dump(sedna_result_array());
-    echo "</pre>";*/
+    echo "</pre>";
   }
 
 
@@ -38,7 +38,7 @@ if (isset($_POST['signup']) || isset($_POST['signin'])) {
       $query = 'for $user in doc("users")//user 
         where 
           $user/password = "'.$password.'" and 
-          $user[@email="'.$email.'"] 
+          $user/email="'.$email.'"
         return $user ';
 
       if (!sedna_execute($query)) {
@@ -90,7 +90,7 @@ if (isset($_POST['signup']) || isset($_POST['signin'])) {
     $xml = new DOMDocument("1.0");
 
     $user = $xml->createElement('user');
-    $user->setAttribute("email", $email);
+    /*$user->setAttribute("email", $email);*/
     $user = $xml->appendChild($user);
 
     $xml_firstname = $xml->createElement('first_name', $first_name);

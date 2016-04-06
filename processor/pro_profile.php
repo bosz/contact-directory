@@ -15,11 +15,11 @@
 	    }
 
 		$query = 
-		'UPDATE replace $user in doc("users")/user[@email="'.$email.'"]
+		'UPDATE replace $user in doc("users")/user[email="'.$email.'"]
 		with
-		<user email="'.$email.'">
-			<email>strange.figure@localhost.com</email>
-			{$user/password}
+		<user>
+			<email>'.$email.'</email>
+			<password>'.$password.'</password>
 			<first_name>'.$first_name.'</first_name>
 			<last_name>'.$last_name.'</last_name>
 			<visible>'.$visible.'</visible>

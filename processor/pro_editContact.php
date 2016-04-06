@@ -103,5 +103,8 @@ if(isset($_POST['new'])){
 	$status = "<div class='alert alert-success'> Contact Successfully Added </div> ";
 
 }
+else if (isset($_POST['edit'])) {
+	echo "I am editing ";
+}
 
 ?>

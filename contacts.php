@@ -1,4 +1,9 @@
-<?php 	include "partial/header.php";	?>
+<?php 	include "partial/header.php";	
+
+  sedna_execute("doc('contactDir')//contacts");
+  // var_dump(sedna_result_array()); die();
+  
+?>
 <title>Contact Dir, add new relation</title>
 
 	<!-- body content -->
@@ -16,6 +21,23 @@
           <?php
 
             $user_id = $_SESSION['email'];
+            if(isset($_GET['delete']))
+              {
+                  $del_id = $_GET['delete'];
+                  $query = "UPDATE delete doc('contactDir')//contacts[@id='".$user_id."']//contact[@id='".$del_id."']";
+                 if (!sedna_execute($query)) {
+                    echo $status = '<div class="alert alert-danger">Error ' . 
+                    sedna_error() .'getting user\'s information</div>';
+                  }
+                  unset($_GET);
+                  echo '
+                  <script type="text/javascript">
+                    window.setTimeout(function() {
+                      location.href = "contacts.php";
+                      }, 500);
+                  </script>';
+              }
+
             $query = "doc('contactDir')//contacts[@id='".$user_id."']";
 
             if (!sedna_execute($query)) {
@@ -25,21 +47,28 @@
 
             else
             {
-              $contacts = sedna_result_array();
-              //var_dump($contacts);
+                  $contacts = sedna_result_array();
+                  //var_dump($contacts);
 
-              $contacts = $contacts[0];
-                 $xml = new DOMDocument;
-                 $xml->loadXML($contacts);
+                  if(sizeof($contacts)>0)
+                  {
+                       $contacts = $contacts[0];
+                       $xml = new DOMDocument;
 
-                 $xsl = new DOMDocument;
-                 $xsl->load('xdata/contacts.xsl');
+                       $xml->loadXML($contacts);
+                      
+                       $xsl = new DOMDocument;
+                       $xsl->load('xdata/contacts.xsl');
 
-                 $proc = new XSLTProcessor;
+                       $proc = new XSLTProcessor;
 
-                 $proc->importStyleSheet($xsl);
-                 echo $proc->transformToXML($xml);
+                       $proc->importStyleSheet($xsl);
+                       echo $proc->transformToXML($xml);
+                  }
 
+                  else
+                    echo '<div class="alert alert-danger"><h4> No Contacts Found, 
+                                          you can create New contacts </h4></div>';
 
 
               }

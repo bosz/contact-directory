@@ -12,7 +12,7 @@
     	die('Could not execute query: <br /> ' . sedna_error() . "\n");*/
 
 	$xml = new DOMDocument;
-	 $query = 'doc("users")//user[@email="'.$_SESSION['email'].'"]';
+	$query = 'doc("users")//user[email="'.$_SESSION['email'].'"]';
     sedna_execute($query);
     $data = sedna_result_array();
     // echo "<pre>"; var_dump($data); die();

@@ -17,60 +17,28 @@
             <form class="form-horizontal" method="post" enctype="multipart/form-data">
               <?php echo $status; ?>
               <h2 class="ttle">Profile Information</h2>
-              <div class="form-group">
-                  <label for="first_name" class="col-sm-3 control-label">First Name </label>
-                  <div class="col-sm-8">
-                      <input required="required" type="text" class="form-control" id="first_name" name="first_name" placeholder="">
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label for="last_name" class="col-sm-3 control-label">Last Name </label>
-                  <div class="col-sm-8">
-                      <input required="required" type="text" class="form-control" id="last_name" name="last_name" placeholder="">
-                  </div>
-              </div>
-              <hr>
-              <div class="form-group">
-                  <label for="email" class="col-sm-3 control-label">Email </label>
-                  <div class="col-sm-8">
-                      <input required="required" readonly="readonly" value="fongohmartin@gmail.com" type="text" class="form-control" name="email" id="email" placeholder="">
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label for="photo" class="col-sm-3 control-label">Photo </label>
-                  <div class="col-sm-8">
-                      <input type="file" class="form-control" name="file" id="photo" placeholder="">
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label for="password" class="col-sm-3 control-label">Password </label>
-                  <div class="col-sm-8">
-                      <input required="required" type="password" class="form-control" name="password" id="password" placeholder="">
-                  </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-10">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="visible"> Others can see my profile
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                  <div class="col-md-9 col-md-offset-3">
-                    <input required="required" type="checkbox" class="" name="liscence"> I accept
-                  </div>
-                  <div class="col-sm-8 col-md-offset-3">
-                      <textarea disabled="disabled" class="form-control" id="skype_id" name="privacy_policy" placeholder=""> Privacy policy agreement here </textarea>
-                  </div>
-              </div>
-              <div class="form-group" style="text-align: right;">
-                  <div class="col-sm-offset-2 col-sm-8">
-                      <button type="submit" name="update_profile" class="btn btn-primary">Update</button>
-                  </div>
-              </div>
-            </form>    
+              <?php 
+              $xml = new DOMDocument;
+              $query = 'doc("users")//user[email="'.$_SESSION['email'].'"]';
+              sedna_execute($query);
+              $data = sedna_result_array();
+                // echo "<pre>"; var_dump($data); die();
+              $data = $data[0];
+              $xml->loadXML($data);
+
+              // Load XSL file
+              $xsl = new DOMDocument;
+              $xsl->load('xdata/editProfile.xslt');
+
+              // Configure the transformer
+              $proc = new XSLTProcessor;
+
+              // Attach the xsl rules
+              $proc->importStyleSheet($xsl);
+
+              echo $proc->transformToXML($xml);
+              ?>
+               </form>    
           </div>
         </div>
 

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<xsd:element name="user" type="user"/>
-<xsd:complexType name="user">
+<xsd:element name="user" type="user_type"/>
+
+<!-- <xsd:attribute name="email" type="xsd:string" /> -->
+
+<xsd:complexType name="user_type">
     <xsd:sequence>
         <xsd:element name="first_name" >
             <xsd:simpleType>
@@ -15,7 +18,7 @@
             <xsd:simpleType>
                 <xsd:restriction base="xsd:string">
                     <xsd:minLength value="5" />
-                    <xsd:maxLength value="10" />
+                    <xsd:maxLength value="20" />
                 </xsd:restriction>
             </xsd:simpleType>
         </xsd:element>

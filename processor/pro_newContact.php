@@ -37,6 +37,7 @@
 	    {
 
 			    $user_contact = $xml->createElement('contact');
+			    $user_contact->setAttribute('id', $alias);
 			    $user_contact = $xml->appendChild($user_contact);
 			    $xml_name = $xml->createElement('name', $fname.' '.$lname);
 			    $xml_alias = $xml->createElement('alias', $alias);
@@ -74,8 +75,8 @@
 			    $user = $xml->createElement('contacts');
 			    $user->setAttribute("id", $user_id);
 			    $user = $xml->appendChild($user);
-
 			    $user_contact = $xml->createElement('contact');
+			    $user_contact->setAttribute('id', $alias);
 			    $user_contact = $user->appendChild($user_contact);
 			    $xml_name = $xml->createElement('name', $fname.' '.$lname);
 			    $xml_alias = $xml->createElement('alias', $alias);
