@@ -15,6 +15,7 @@
 	 $query = 'doc("users")//user[@email="'.$_SESSION['email'].'"]';
     sedna_execute($query);
     $data = sedna_result_array();
+    // echo "<pre>"; var_dump($data); die();
     $data = $data[0];
 	$xml->loadXML($data);
 

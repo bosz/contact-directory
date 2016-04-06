@@ -4,7 +4,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template match="/">
 
-          <xsl:for-each select="ContactDir/contacts[@id='kl@gmail.com']/contact">
+          <xsl:for-each select="contacts/contact">
                <div class="contact-in-contacts col-md-12">
                  <img src="img/default_user.png" class="img-circle col-md-3" />
                  <div class="col-md-9">
@@ -13,7 +13,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
                    <h4>Alias: <xsl:value-of select='alias' /></h4>
                    <h4>Email: <xsl:value-of select='email' /></h4>
                    <h4>Skype: <xsl:value-of select='skype' />
-                    <a href="singleContact.php" class="btn btn-sm btn-primary pull-right">Full Details</a>
+                    <a href="editContact.php" class="btn btn-sm btn-primary pull-right"
+                      name="djff">Full Details</a>
                     </h4>
                  </div>
                </div>

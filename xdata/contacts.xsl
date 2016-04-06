@@ -13,7 +13,12 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
                    <h4>Alias: <xsl:value-of select='alias' /></h4>
                    <h4>Email: <xsl:value-of select='email' /></h4>
                    <h4>Skype: <xsl:value-of select='skype' />
-                    <a href="singleContact.php" class="btn btn-sm btn-primary pull-right">Full Details</a>
+                   <xsl:variable name="id" select="alias"/>
+                   <a href="contacts.php?delete={$id}" class="btn btn-sm btn-warning pull-right col-sm-offset-1"
+                    >Delete</a>
+                    <a href="editContact.php?alias={$id}" class="btn btn-sm btn-primary pull-right"
+                      >Edit contact</a>
+                    
                     </h4>
                  </div>
                </div>
