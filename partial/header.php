@@ -1,5 +1,10 @@
 <?php 
     session_start();
+    $page = basename($_SERVER['PHP_SELF']);
+    if (!isset($_SESSION['email']) && $page != 'index.php' && $page != "signup.php"){
+        header("location: index.php");
+    }
+
     require_once "connect.php"; 
     $status = null; //status to hold information gotten from requests (suceess, failure, warin g, errors, etc. )
 ?>
@@ -65,7 +70,7 @@
                     <!-- <li><a href="newRelation.php">Requests</a></li> -->
                     <?php } else { ?>
                     <li><a href="index.php">Sign In</a></li>
-                    <li><a href="auth.php">Sign Up</a></li>
+                    <li><a href="signup.php">Sign Up</a></li>
                     <?php } ?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

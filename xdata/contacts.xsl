@@ -6,7 +6,9 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
           <xsl:for-each select="contacts/contact">
                <div class="contact-in-contacts col-md-12">
-                 <img src="img/default_user.png" class="img-circle col-md-3" />
+                  <div class="img-thumbnail col-md-3">
+                    <img src='{image}' width="130px;" class="pull-left" />
+                  </div>
                  <div class="col-md-9">
                    <h4><xsl:value-of select='name' /> ( <small> { <xsl:value-of select='relation' />} </small>) </h4>
                    <h4><xsl:value-of select='phone' /></h4>

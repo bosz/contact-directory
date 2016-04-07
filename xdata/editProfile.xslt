@@ -32,7 +32,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
         <div class="form-group">
             <label for="password" class="col-sm-3 control-label">Password </label>
             <div class="col-sm-8">
-                <input required="required" type="password" class="form-control" name="password" value="******" id="password" placeholder="" />
+                <input required="required" type="password" class="form-control" name="password" id="password" placeholder="" />
             </div>
         </div>
         <div class="form-group">

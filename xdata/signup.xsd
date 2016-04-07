@@ -9,7 +9,7 @@
         <xsd:element name="first_name" >
             <xsd:simpleType>
                 <xsd:restriction base="xsd:string">
-                    <xsd:minLength value="5" />
+                    <xsd:minLength value="2" />
                     <xsd:maxLength value="10" />
                 </xsd:restriction>
             </xsd:simpleType>
@@ -17,7 +17,7 @@
         <xsd:element name="last_name" >
             <xsd:simpleType>
                 <xsd:restriction base="xsd:string">
-                    <xsd:minLength value="5" />
+                    <xsd:minLength value="2" />
                     <xsd:maxLength value="20" />
                 </xsd:restriction>
             </xsd:simpleType>

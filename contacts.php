@@ -1,10 +1,10 @@
-<?php 	include "partial/header.php";	
-
+<?php 	
+  include "partial/header.php";   
   sedna_execute("doc('contactDir')//contacts");
   // var_dump(sedna_result_array()); die();
   
 ?>
-<title>Contact Dir, add new relation</title>
+<title>Contact Dir, list of contacts</title>
 
 	<!-- body content -->
     <div class="container-fluid cnt">
@@ -24,12 +24,22 @@
             if(isset($_GET['delete']))
               {
                   $del_id = $_GET['delete'];
+                  sedna_execute("doc('contactDir')//contacts[@id='".$user_id."']//contact[@id='".$del_id."']/image");
+
                   $query = "UPDATE delete doc('contactDir')//contacts[@id='".$user_id."']//contact[@id='".$del_id."']";
                  if (!sedna_execute($query)) {
                     echo $status = '<div class="alert alert-danger">Error ' . 
                     sedna_error() .'getting user\'s information</div>';
                   }
+
+                  /*delete image*/
+                  $c = sedna_result_array()[0];
+                  $xml = new SimpleXMLElement($c);
+                  $image = $xml[0];
+                  unlink($image);
+
                   unset($_GET);
+                  /*redirect to contacts page*/
                   echo '
                   <script type="text/javascript">
                     window.setTimeout(function() {
@@ -48,7 +58,7 @@
             else
             {
                   $contacts = sedna_result_array();
-                  //var_dump($contacts);
+                  // var_dump($contacts); die();
 
                   if(sizeof($contacts)>0)
                   {

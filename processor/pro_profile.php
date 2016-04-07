@@ -6,8 +6,8 @@
   		$first_name = $_POST['first_name'];
 	    $last_name = $_POST['last_name'];
 	    $visible = isset($_POST['visible']) ? $_POST['visible'] : "off";
-	    //Upload image 
 
+	    //Upload image 
 	    if ($_FILES['file']['name'] == "") { 
 	    	$image = $_SESSION['image']; //retain image
 	    }else {
@@ -30,9 +30,11 @@
 	      die('Could not add the user\'s information : ' . sedna_error() . "\n");
 	    }
 
-	    /*remove previous image and update session with new image*/
-	    unlink($_SESSION['image']);
-	    $_SESSION['image'] = $image;
+	    /*remove previous image and update session with new image if image was updated*/ 
+	    if ($_FILES['file']['name'] != "") { 
+		    unlink($_SESSION['image']);
+		    $_SESSION['image'] = $image;
+	    }
 	    $status = ' <div class="alert alert-success"> Profile uploaded succesfully</div>';
 	    $status .= '<center>You will be redirected in 2 seconds</center>';
 	    ?>

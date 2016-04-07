@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:template match="/">
-  <xsl:for-each select="Relations/relation">
+  <xsl:for-each select="relation">
      <option value="{.}"><xsl:value-of select='.' /></option>
   </xsl:for-each>
 </xsl:template>

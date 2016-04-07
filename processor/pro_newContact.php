@@ -9,13 +9,14 @@
   	}
   	else
   	{
-	    // echo "<pre>";
-	    // var_dump(sedna_result_array());
-	    // echo "</pre>";
+	    /*echo "<pre>";
+	    var_dump(sedna_result_array());
+	    echo "</pre>";*/
   	}
 
   	if(isset($_POST['new']))
   	{
+  		require_once "functions.php";
   		$user_info = null;
   		$fname = $_POST['first_name'];
 		$lname = $_POST['last_name'];
@@ -25,6 +26,12 @@
 		$relation = $_POST['relation'];
 		$note = $_POST['note'];
 		$phone = $_POST['phone'];
+
+		if ($_FILES['file']['name'] == "") { 
+	      $image = 'img/default_user.png'; //no image uploaded
+	    }else {
+	      $image = uploadImage($_FILES, 'img/contacts/'); //uploaded an image
+	    }
 
 		$user_id = $_SESSION['email'];
 
@@ -46,6 +53,7 @@
 			    $xml_relation = $xml->createElement('relation', $relation);
 			    $xml_note = $xml->createElement('note', $note);
 			    $xml_phone = $xml->createElement('phone', $phone);
+			    $xml_image = $xml->createElement('image', $image);
 
 			    $xml_name = $user_contact->appendChild($xml_name);
 			    $xml_alias = $user_contact->appendChild($xml_alias);
@@ -54,6 +62,7 @@
 			    $xml_relation = $user_contact->appendChild($xml_relation);
 			    $xml_note = $user_contact->appendChild($xml_note);
 			    $xml_phone = $user_contact->appendChild($xml_phone);
+			    $xml_image = $user_contact->appendChild($xml_image);
 
 			    $xml->formatOutput = true;
 
@@ -85,6 +94,7 @@
 			    $xml_relation = $xml->createElement('relation', $relation);
 			    $xml_note = $xml->createElement('note', $note);
 			    $xml_phone = $xml->createElement('phone', $phone);
+			    $xml_image = $xml->createElement('image', $image);
 
 			    $xml_name = $user_contact->appendChild($xml_name);
 			    $xml_alias = $user_contact->appendChild($xml_alias);
@@ -93,6 +103,7 @@
 			    $xml_relation = $user_contact->appendChild($xml_relation);
 			    $xml_note = $user_contact->appendChild($xml_note);
 			    $xml_phone = $user_contact->appendChild($xml_phone);
+			    $xml_image = $user_contact->appendChild($xml_image);
 
 			    $xml->formatOutput = true;
 

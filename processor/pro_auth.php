@@ -6,9 +6,9 @@
     sedna_load('<users></users>', 'users');
     echo ('<div class="alert alert-warning">Could not execute query: ' . sedna_error() . "</div>");
   }else{
-    echo "<pre>";
+    /*echo "<pre>";
     var_dump(sedna_result_array());
-    echo "</pre>";
+    echo "</pre>";*/
   }
 
 
